@@ -38,13 +38,13 @@ void XyzWriter::endStep(ParticleContainer *particleContainer, DomainDecompBase *
 		std::stringstream filenamestream;
 		filenamestream << _outputPrefix;
 
-		unsigned long numTimesteps = _simulation.getNumTimesteps();
 		if(_incremental) {
 			/* align file numbers with preceding '0's in the required range from 0 to _numberOfTimesteps. */
+			unsigned long numTimesteps = _simulation.getNumTimesteps();
 			int num_digits = (int) ceil( log( double( numTimesteps / _writeFrequency ) ) / log(10.) );
 			filenamestream << "-" << aligned_number( simstep / _writeFrequency, num_digits, '0' );
 		} else {
-			filenamestream << "-" << numTimesteps;
+			filenamestream << "-" << simstep;
 		}
 		if(_appendTimestamp) {
 			filenamestream << "-" << gettimestring();
