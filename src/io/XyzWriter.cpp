@@ -26,6 +26,9 @@ void XyzWriter::readXML(XMLfileUnits& xmlconfig) {
 
 	xmlconfig.getNodeValue("appendTimestamp", _appendTimestamp);
 	Log::global_log->info() << "Append timestamp: " << _appendTimestamp << std::endl;
+
+	xmlconfig.getNodeValue("appendTimestep", _appendTimestep);
+	Log::global_log->info() << "Append timestep: " << _appendTimestep << std::endl;
 }
 
 void XyzWriter::init(ParticleContainer * /*particleContainer*/, DomainDecompBase * /*domainDecomp*/,
@@ -43,7 +46,8 @@ void XyzWriter::endStep(ParticleContainer *particleContainer, DomainDecompBase *
 			unsigned long numTimesteps = _simulation.getNumTimesteps();
 			int num_digits = (int) ceil( log( double( numTimesteps / _writeFrequency ) ) / log(10.) );
 			filenamestream << "-" << aligned_number( simstep / _writeFrequency, num_digits, '0' );
-		} else {
+		}
+		if(_appendTimestep) {
 			filenamestream << "-" << simstep;
 		}
 		if(_appendTimestamp) {
