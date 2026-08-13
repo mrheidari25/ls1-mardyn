@@ -12,12 +12,22 @@ void MamicoCoupling::beforeForces(ParticleContainer *particleContainer, DomainDe
 	if (_couplingEnabled) {
 		// This object should be set by MaMiCo after the plugins are created in the simulation readxml file.
 		// Even though this method is called before the object is set, at this point the coupling switch is always off
-		_couplingCellService->processInnerCouplingCellAfterMDTimestep();
-		_couplingCellService->distributeMass(simstep);
-		_couplingCellService->applyTemperatureToMolecules(simstep);
+        _couplingCellService->processInnerCouplingCellAfterMDTimestep();
+		// Before forces are calculated, mamico would like to insert and delete particles using usher
+		// At this point in time, ls1 linked cells should have no halos, and leaving particles should not have been communicated
+		// Particle contianer is hence updated to make sure halos exist
+        global_simulation->updateParticleContainerAndDecomposition(1.0, false);
+		// Particle insertion and deletion
+        _couplingCellService->distributeMass(simstep);
+		// Mamico thermostat
+        _couplingCellService->applyTemperatureToMolecules(simstep);
+		// Remove halos, as at this point in the code there should be no halos
 #ifndef MARDYN_AUTOPAS
-		particleContainer->deleteOuterParticles();
+        particleContainer->deleteOuterParticles();
 #endif
+		// Unfortunately, at this point, leaving particles should exist on source ranks and not destination
+		// Thus this plugin does not entirely preserve the simulation state, since leaving particles are communicated
+		// Any plugins after this that work on leaving particles will find zero leaving particles
 	}
 }
 
