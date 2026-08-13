@@ -4,6 +4,7 @@
 
 #include <coupling/interface/impl/ls1/LS1RegionWrapper.h>
 #include <coupling/services/CouplingCellService.h>
+
 #include "PluginBase.h"
 
 /**
@@ -116,4 +117,4 @@ private:
 	bool _couplingEnabled = false;
 };
 
-#endif  // MAMICO_COUPLING
+#endif	// MAMICO_COUPLING
