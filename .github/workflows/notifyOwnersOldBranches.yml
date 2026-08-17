@@ -36,9 +36,11 @@ jobs:
 
           # Variable for collecting GitHub usernames
           allContributors=""
-  
-          reportText="The branches listed below have been inactive for over one year. Therefore, they are scheduled for removal in 60 days. "
-          reportText+="If you need any of these branches, please let us know before the deadline."
+
+          reportText="The branches listed below have been inactive for over one year. Therefore, they are scheduled for archival in 60 days."
+          reportText+="We will create a pull request for the branch, delete the branch, and then close the pull request. This will remove the"
+          reportText+="branch from the git repository, but it will be possible to restore the branch through this closed pull request. However,"
+          reportText+="please let us know before the deadline if you plan to re-use the branch soon."
           issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\nBRANCH                 AGE                  OWNER\n---------------------------------------------------------------\n'
 
           # Loop through branches
@@ -53,6 +55,10 @@ jobs:
             if [ "$open_prs" -gt 0 ]; then
               continue
             fi
+
+            echo "======================================"
+            echo "Processing branch: [$branch]"
+            echo "======================================"
 
             # Get last commit date
             lastCommitDate=$(gh api repos/${{ github.repository }}/commits/$branch --jq '.commit.committer.date')
