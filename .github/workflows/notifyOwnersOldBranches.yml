@@ -93,7 +93,8 @@ jobs:
           done < branches.txt
 
           # Remove duplicate usernames and create GitHub mentions
-          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
+#REZATemp          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
+          mentions=""
 
           # Close the code block
           issueBody+=$'\n```'
