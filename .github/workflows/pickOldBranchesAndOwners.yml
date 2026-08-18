@@ -52,6 +52,7 @@ jobs:
             if [ $branchAgeDays -ge $AGE_CUTOFF ]; then
               # Get contributors to the branch
               commitData=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch")
+              echo $commitData
               contributors=$(printf '%s\n' "$commitData" | jq -r '.commits[] | select(.author.login != null) |"\(.commit.author.name) (@\(.author.login)) <\(.commit.author.email)>"')
               contributors=$(printf '%s\n' "$contributors" | sort -u)      
               contributors=$(printf '%s\n' "$contributors" | paste -sd ', ' -)
