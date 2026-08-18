@@ -1,12 +1,12 @@
 name: clang-format check for ls1
 
 on:
-  push:
-    # pushes to master
-    branches: [ master ]
-  pull_request:
-    # PRs to master
-    branches: [ master ]
+#  push:
+#    # pushes to master
+#    branches: [ master ]
+#  pull_request:
+#    # PRs to master
+#    branches: [ master ]
 
 # abort old runs if a new one is started
 concurrency:

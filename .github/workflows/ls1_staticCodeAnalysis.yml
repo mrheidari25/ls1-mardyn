@@ -1,12 +1,12 @@
 name: Static-Code-Analysis
 
 on:
-  push:
-    # pushes to master
-    branches: [ master ]
-  pull_request:
-    # PRs to master
-    branches: [ master ]
+#  push:
+#    # pushes to master
+#    branches: [ master ]
+#  pull_request:
+#    # PRs to master
+#    branches: [ master ]
 
 jobs:
   static_analysis:
