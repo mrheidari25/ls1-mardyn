@@ -60,7 +60,7 @@ jobs:
               RED='\033[31m'
               GREEN='\033[32m'
               NC='\033[0m'
-#              printf "BRANCH=${BLUE}%-20s${NC} AGE=${RED}%-15s${NC} OWNER=${GREEN}%s${NC}\n" "$branch" "${branchAgeDays} days old" "$contributors"
+              #REZA printf "BRANCH=${BLUE}%-20s${NC} AGE=${RED}%-15s${NC} OWNER=${GREEN}%s${NC}\n" "$branch" "${branchAgeDays} days old" "$contributors"
               printf "BRANCH=${BLUE}%-20s${NC} AGE=${RED}%-15s${NC} OWNER=${GREEN}%s${NC}\n" "$branch" "${branchAgeDays} days old" "$contributors"
 
             fi
