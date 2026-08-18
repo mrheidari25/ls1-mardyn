@@ -61,7 +61,7 @@ jobs:
               GREEN='\033[32m'
               NC='\033[0m'
               #REZA printf "BRANCH=${BLUE}%-20s${NC} AGE=${RED}%-15s${NC} OWNER=${GREEN}%s${NC}\n" "$branch" "${branchAgeDays} days old" "$contributors"
-              printf "BRANCH=${BLUE}%-20s${NC} AGE=${RED}%-15s${NC} OWNER=${GREEN}%s${NC}\n" "$branch" "${branchAgeDays} days old" "$contributors"
+              printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$contributors"
 
             fi
           done < branches.txt
