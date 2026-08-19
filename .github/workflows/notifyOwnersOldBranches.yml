@@ -83,7 +83,7 @@ jobs:
               issueBody+=$'\n'
 
               # Get only GitHub usernames for notifications
-	      contributorLogin=$(printf '%s\n' "$lastCommitData" | jq -r '.author.login // "unknown"')
+              contributorLogin=$(printf '%s\n' "$lastCommitData" | jq -r '.author.login // "unknown"')
               #contributorLogins=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch" --jq '.commits[].author.login' | sort -u)
 
               # Add the usernames to the global contributor list
