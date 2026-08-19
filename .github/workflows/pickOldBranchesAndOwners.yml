@@ -43,7 +43,8 @@ jobs:
             fi
 
             # Get last commit date
-            lastCommitDate=$(gh api repos/${{ github.repository }}/commits/$branch --jq '.commit.committer.date')
+	    lastCommitData=$(gh api "repos/${{ github.repository }}/commits/$branch")
+	    lastCommitDate=$(printf '%s\n' "$lastCommitData" | jq -r '.commit.committer.date')
 
             # Calculate branch age in days
             branchAgeDays=$(( ($(date -u +%s) - $(date -u -d "$lastCommitDate" +%s)) / 86400 ))
@@ -51,12 +52,26 @@ jobs:
             # Check whether the branch is old enough
             if [ $branchAgeDays -ge $AGE_CUTOFF ]; then
               # Get contributors to the branch
+              #commitData=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch")
+              #echo $commitData
+              #contributors=$(printf '%s\n' "$commitData" | jq -r '.commits[] | "\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
+              ##contributors=$(printf '%s\n' "$commitData" | jq -r '.commits[] | select(.author.login != null) |"\(.commit.author.name) (@\(.author.login)) <\(.commit.author.email)>"')
+              #contributors=$(printf '%s\n' "$contributors" | sort -u)      
+              #contributors=$(printf '%s\n' "$contributors" | paste -sd ', ' -)
+
               commitData=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch")
-              echo $commitData
-              contributors=$(printf '%s\n' "$commitData" | jq -r '.commits[] | "\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
-              #contributors=$(printf '%s\n' "$commitData" | jq -r '.commits[] | select(.author.login != null) |"\(.commit.author.name) (@\(.author.login)) <\(.commit.author.email)>"')
-              contributors=$(printf '%s\n' "$contributors" | sort -u)      
-              contributors=$(printf '%s\n' "$contributors" | paste -sd ', ' -)
+              aheadBy=$(printf '%s\n' "$commitData" | jq -r '.ahead_by')
+
+              if [ "$aheadBy" -gt 0 ]; then
+                # Get the latest commit on the branch
+                lastCommit=$(gh api "repos/${{ github.repository }}/commits/$branch")
+
+                # Get the author of the latest commit
+		contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
+              else
+                contributors="No unique commits"
+              fi
+
               echo $contributors
               BLUE='\033[34m'
               RED='\033[31m'
