@@ -59,10 +59,10 @@ jobs:
               #contributors=$(printf '%s\n' "$contributors" | sort -u)      
               #contributors=$(printf '%s\n' "$contributors" | paste -sd ', ' -)
 
-              contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
+              #contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
 	      
-              commitData=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch")
-              aheadBy=$(printf '%s\n' "$commitData" | jq -r '.ahead_by')
+              #commitData=$(gh api "repos/${{ github.repository }}/compare/$MAIN_BRANCH...$branch")
+              #aheadBy=$(printf '%s\n' "$commitData" | jq -r '.ahead_by')
 
               #if [ "$aheadBy" -gt 0 ]; then
               #  # Get the latest commit on the branch
