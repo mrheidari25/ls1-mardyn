@@ -67,7 +67,7 @@ jobs:
                 lastCommit=$(gh api "repos/${{ github.repository }}/commits/$branch")
 
                 # Get the author of the latest commit
-		contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
+                contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
               else
                 contributors="No unique commits"
               fi
