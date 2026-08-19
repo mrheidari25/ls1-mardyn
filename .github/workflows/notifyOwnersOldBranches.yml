@@ -90,6 +90,7 @@ jobs:
           #REZATemp          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
           mentions=""
           mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
+          mentions="@RezaUHH"
           echo $mentions
 
           # Close the code block
