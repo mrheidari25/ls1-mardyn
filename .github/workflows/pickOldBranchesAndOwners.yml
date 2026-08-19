@@ -51,14 +51,13 @@ jobs:
 
             # Check whether the branch is old enough
             if [ $branchAgeDays -ge $AGE_CUTOFF ]; then
-              # Get contributors to the branch
-              contributors=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
+              # Get the author of the last commit of the branch
+              author=$(printf '%s\n' "$lastCommitData" | jq -r '"\(.commit.author.name) (@\(.author.login // "unknown")) <\(.commit.author.email // "unknown")>"')
 
-              echo $contributors
               BLUE='\033[34m'
               RED='\033[31m'
               GREEN='\033[32m'
               NC='\033[0m'
-              printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$contributors"
+              printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$author"
             fi
           done < branches.txt
