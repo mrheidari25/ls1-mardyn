@@ -89,6 +89,8 @@ jobs:
           # Remove duplicate usernames and create GitHub mentions
           #REZATemp          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
           mentions=""
+          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
+          echo $mentions
 
           # Close the code block
           issueBody+=$'\n```'
