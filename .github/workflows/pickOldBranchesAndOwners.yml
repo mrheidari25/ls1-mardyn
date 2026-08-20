@@ -58,7 +58,6 @@ jobs:
               RED='\033[31m'
               GREEN='\033[32m'
               NC='\033[0m'
-              #printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$author"
               printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$author"
             fi
           done < branches.txt

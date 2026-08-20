@@ -42,7 +42,6 @@ jobs:
           reportText+="branch from the git repository, but it will be possible to restore the branch through this closed pull request. However,"
           reportText+="please let us know before the deadline if you plan to re-use the branch soon."
           issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\n'
-          #issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\nBRANCH                 AGE                  OWNER\n---------------------------------------------------------------\n'
 
           # Loop through branches
           while read branch; do
@@ -76,7 +75,6 @@ jobs:
               printf "BRANCH=${BLUE}%-20s${NC}\nAGE=${RED}%-15s${NC}\nOWNER=${GREEN}%s${NC}\n\n" "$branch" "${branchAgeDays} days old" "$author"
 
               #create an issue
-              #issueBody+=$(printf '%-20s 🔴 %-15s 🟢 %s' "$branch" "$branchAgeDays days old" "$author")
               issueBody+=$(printf '🔵BRANCH= %-20s\n🔴AGE= %-15s\n🟢OWNER= %s\n\n' "$branch" "$branchAgeDays days old" "$author")
               issueBody+=$'\n\n'
 
@@ -89,8 +87,6 @@ jobs:
           done < branches.txt
 
           # Remove duplicate usernames and create GitHub mentions
-          #REZATemp          mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
-          mentions=""
           mentions=$(printf '%s\n' "$allContributors" | sed '/^null$/d' | sed '/^$/d' | sort -u | sed 's/^/@/' | paste -sd ' ' -)
           mentions="@RezaUHH"
           echo $mentions
