@@ -76,7 +76,7 @@ jobs:
 
               #create an issue
               #issueBody+=$(printf '%-20s 🔴 %-15s 🟢 %s' "$branch" "$branchAgeDays days old" "$author")
-	      issueBody+=$(printf '**BRANCH:** 🔵 `%s`\n**AGE:** 🔴 %s days old\n**OWNER:** 🟢 %s\n\n' "$branch" "$branchAgeDays" "$author")
+              issueBody+=$(printf '**BRANCH:** 🔵 `%s`\n**AGE:** 🔴 %s days old\n**OWNER:** 🟢 %s\n\n' "$branch" "$branchAgeDays" "$author")
               issueBody+=$'\n'
 
               # Get only GitHub usernames for notifications
