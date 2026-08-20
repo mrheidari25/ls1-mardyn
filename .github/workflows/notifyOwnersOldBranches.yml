@@ -77,7 +77,7 @@ jobs:
               #create an issue
               #issueBody+=$(printf '%-20s 🔴 %-15s 🟢 %s' "$branch" "$branchAgeDays days old" "$author")
               issueBody+=$(printf 'BRANCH=🔵 %-20s\nAGE=🔴 %-15s\nOWNER=🟢 %s\n\n' "$branch" "$branchAgeDays days old" "$author")
-              issueBody+=$'\n'
+              issueBody+=$'\n\n'
 
               # Get only GitHub usernames for notifications
               contributorLogin=$(printf '%s\n' "$lastCommitData" | jq -r '.author.login // "unknown"')
