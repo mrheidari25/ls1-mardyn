@@ -41,7 +41,8 @@ jobs:
           reportText+="We will create a pull request for the branch, delete the branch, and then close the pull request. This will remove the"
           reportText+="branch from the git repository, but it will be possible to restore the branch through this closed pull request. However,"
           reportText+="please let us know before the deadline if you plan to re-use the branch soon."
-          issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\nBRANCH                 AGE                  OWNER\n---------------------------------------------------------------\n'
+          issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\n'
+          #issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\nBRANCH                 AGE                  OWNER\n---------------------------------------------------------------\n'
 
           # Loop through branches
           while read branch; do
