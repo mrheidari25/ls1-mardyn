@@ -1,3 +1,7 @@
+# In the first step, this workflow collects the old branches (as well as its author) that have been inactive for a certain number of days.
+# In the second step, it generates an issue to send notifications to the authors of the old branches.
+# In the notifications, the authors will be informed that their branches are old and scheduled to be archived.
+
 name: Notify Owners of Old Branches
 
 on:
