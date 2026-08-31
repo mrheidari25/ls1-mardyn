@@ -40,7 +40,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         run: |
-          AGE_CUTOFF=360 # In days
+          AGE_CUTOFF=${{ inputs.age_cutoff }} # In days
+          echo $AGE_CUTOFF
           MAIN_BRANCH=master
 
           # Fetch all branches
