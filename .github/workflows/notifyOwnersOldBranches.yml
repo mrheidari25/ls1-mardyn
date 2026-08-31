@@ -43,10 +43,10 @@ jobs:
           # Variable for collecting GitHub usernames
           allContributors=""
 
-          reportText="The branches listed below have been inactive for over ${AGE_CUTOFF} days. Therefore, they are scheduled for archival in 60 days."
+          reportText="The branches listed below have been inactive for over ${AGE_CUTOFF} days. Therefore, they are scheduled for archival in 60 days. "
           reportText+="We will create a pull request for the branch, delete the branch, and then close the pull request. This will remove the commit"
-          reportText+="hidtory of the branch from the git repository, but it should be possible to restore the final state of the branch."
-          reportText+="please let us know before the deadline if you plan to re-use the branch soon and would like to keep the branch intact."
+          reportText+="hidtory of the branch from the git repository, but it should be possible to restore the final state of the branch. "
+          reportText+="Please let us know before the deadline if you plan to re-use the branch soon and would like to keep the branch intact."
           issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\n'
 
           # Loop through branches
