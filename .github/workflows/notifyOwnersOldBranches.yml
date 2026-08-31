@@ -12,7 +12,7 @@ on:
       age_cutoff:
         description: 'Branches older than this many days'
         required: true
-        default: '1' # In days
+        default: '360' # In days
         type: number
 
 jobs:
