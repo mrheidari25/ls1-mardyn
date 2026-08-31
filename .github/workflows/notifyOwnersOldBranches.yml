@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       age_cutoff:
-        description: 'Branches older than this many days'
+        description: 'Branches older than these many days will be collected:'
         required: true
         default: '360' # In days
         type: number

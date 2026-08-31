@@ -6,6 +6,12 @@ name: Pick Old Branches & Owners
 
 on:
   workflow_dispatch:
+    inputs:
+      age_cutoff:
+        description: 'Branches older than these many days will be collected:'
+        required: true
+        default: '360' # In days
+        type: number
 
 jobs:
   PickOldBranchesAndOwners:
@@ -27,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         run: |
-          AGE_CUTOFF=360 # In days
+          AGE_CUTOFF=${{ inputs.age_cutoff }} # In days
           MAIN_BRANCH=master
 
           # Fetch all branches
