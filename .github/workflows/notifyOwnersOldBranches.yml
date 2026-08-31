@@ -8,6 +8,12 @@ name: Notify Owners of Old Branches
 
 on:
   workflow_dispatch:
+    inputs:
+      age_cutoff:
+        description: 'Branches older than this many days'
+        required: true
+        default: '1' # In days
+        type: number
 
 jobs:
   NotifyOwnersOldBranches:
