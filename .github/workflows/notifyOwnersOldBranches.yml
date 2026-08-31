@@ -1,6 +1,8 @@
-# In the first step, this workflow collects the old branches (as well as its author) that have been inactive for a certain number of days.
+# This workflow implements two preliminary steps to handle old branches.
+# In the first step, this workflow collects old branches and their authors.
 # In the second step, it generates an issue to send notifications to the authors of the old branches.
 # In the notifications, the authors will be informed that their branches are old and scheduled to be archived.
+# By archiving, the commit history will be deleted, but the final state of the branch is recoverable.
 
 name: Notify Owners of Old Branches
 
@@ -42,9 +44,9 @@ jobs:
           allContributors=""
 
           reportText="The branches listed below have been inactive for over ${AGE_CUTOFF} days. Therefore, they are scheduled for archival in 60 days."
-          reportText+="We will create a pull request for the branch, delete the branch, and then close the pull request. This will remove the"
-          reportText+="branch from the git repository, but it will be possible to restore the branch through this closed pull request. However,"
-          reportText+="please let us know before the deadline if you plan to re-use the branch soon."
+          reportText+="We will create a pull request for the branch, delete the branch, and then close the pull request. This will remove the commit"
+          reportText+="hidtory of the branch from the git repository, but it should be possible to restore the final state of the branch."
+          reportText+="please let us know before the deadline if you plan to re-use the branch soon and would like to keep the branch intact."
           issueBody=$'## Old Branches\n\n'"$reportText"$'\n\n```text\n'
 
           # Loop through branches

@@ -1,6 +1,6 @@
-# This workflow collects the old branches (as well as its author) that have been inactive for a certain number of days.
-# This workflow is to implement and test a preliminary step for archiving the old branches.
-# This workflow is temporary and can be renoved when the test is completed.
+# This workflow is to implement and test a preliminary step for archiving old branches.
+# In this preliminary step, the old branches and their authors will be collected.
+# After successful tests, this step will be integrated into a second workflow and the current workflow will be removed.
 
 name: Pick Old Branches & Owners
 
